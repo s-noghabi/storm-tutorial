@@ -11,7 +11,7 @@ public class SplitSentenceBolt extends BaseBasicBolt {
 @Override
    public void execute(Tuple tuple, BasicOutputCollector collector) {
        String sentence = tuple.getString(0);
-       String[]words=sentence.split(" ");
+       String[]words=sentence.split("[\\s~`!@#$%^&*(-)+=_:;'\",.<>?/\\\\0-9"+"\\]\\[\\}\\{]+");
 
        for(String word:words){
            collector.emit(new Values(word));
